@@ -20,7 +20,6 @@ const loggerOptions: LoggerOptions = {
             };
         },
     },
-    timestamp: pino.stdTimeFunctions.isoTime,
 };
 
 export const log = pino(loggerOptions);
