@@ -1,7 +1,7 @@
 import { env } from "../config/env.js";
 import { AniwatchAPICache, cache } from "../config/cache.js";
 import type { BlankInput } from "hono/types";
-import type { Context, MiddlewareHandler } from "hono";
+import type { Context, MiddlewareHandler, Handler } from "hono";
 import type { ServerContext } from "../config/context.js";
 
 // Define middleware to add Cache-Control header
@@ -41,9 +41,10 @@ export function cacheConfigSetter(keySliceIndex: number): MiddlewareHandler {
     };
 }
 
+//  FIXED: add explicit return type
 export function withCache<T, P extends string = string>(
     getData: (c: Context<ServerContext, P, BlankInput>) => Promise<T>
-) {
+): Handler<ServerContext, P, BlankInput> {
     return async (c: Context<ServerContext, P, BlankInput>) => {
         const cacheConfig = c.get("CACHE_CONFIG");
 
@@ -56,10 +57,3 @@ export function withCache<T, P extends string = string>(
         return c.json({ status: 200, data }, { status: 200 });
     };
 }
-
-// export function _withCache<T>(
-//     context: Context<ServerContext>,
-//     promise: Promise<T>
-// ): MiddlewareHandler {
-//     return async (c) => {};
-// }
