@@ -1364,3 +1364,5 @@ This project is licensed under the [MIT License](https://opensource.org/license/
   src="https://starchart.cc/ghoshRitesh12/aniwatch-api.svg?variant=adaptive"
   alt=""
 />
+# hianimeapi
+# hianimeapi
